@@ -11,6 +11,7 @@ import Pulley
 
 class DrawerContentViewController: UIViewController {
 
+    @IBOutlet weak var testView: UIView!
     // Pulley can apply a custom mask to the panel drawer. This variable toggles an example.
     private var shouldDisplayCustomMaskExample = false
 
@@ -37,7 +38,11 @@ class DrawerContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        testView.superview?.clipsToBounds = false
+        print(testView.superview)
         // Do any additional setup after loading the view.
+        self.view.frame.origin = CGPoint(x: 0, y: -200)
+        self.view.clipsToBounds = false
         gripperView.layer.cornerRadius = 2.5
     }
     

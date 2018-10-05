@@ -638,6 +638,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         
         if drawerContentContainerView != nil
         {
+            drawerContentContainerView.clipsToBounds = false
             drawerContentContainerView.removeFromSuperview()
         }
         
@@ -663,19 +664,21 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         drawerShadowView.layer.shadowOpacity = shadowOpacity
         drawerShadowView.layer.shadowRadius = shadowRadius
         drawerShadowView.backgroundColor = UIColor.clear
+        drawerShadowView.clipsToBounds = false
         
         drawerContentContainer.backgroundColor = UIColor.clear
         
         backgroundDimmingView.backgroundColor = backgroundDimmingColor
         backgroundDimmingView.isUserInteractionEnabled = false
         backgroundDimmingView.alpha = 0.0
+        backgroundDimmingView.clipsToBounds = false
         
         drawerBackgroundVisualEffectView?.clipsToBounds = false
         
         dimmingViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PulleyViewController.dimmingViewTapRecognizerAction(gestureRecognizer:)))
         backgroundDimmingView.addGestureRecognizer(dimmingViewTapRecognizer!)
         
-        drawerScrollView.addSubview(drawerShadowView)
+//        drawerScrollView.addSubview(drawerShadowView)
         
         if let drawerBackgroundVisualEffectView = drawerBackgroundVisualEffectView
         {
@@ -683,7 +686,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             drawerBackgroundVisualEffectView.layer.cornerRadius = drawerCornerRadius
         }
         
-        drawerScrollView.addSubview(drawerContentContainer)
+//        drawerScrollView.addSubview(drawerContentContainer)
         
         primaryContentContainer.backgroundColor = UIColor.white
         
@@ -700,6 +703,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         super.viewDidLoad()
         
         // IB Support
+        print("Rock")
         if primaryContentViewController == nil || drawerContentViewController == nil
         {
             assert(primaryContentContainerView != nil && drawerContentContainerView != nil, "When instantiating from Interface Builder you must provide container views with an embedded view controller.")
@@ -760,7 +764,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             {
                 drawerContentContainer.addSubview(drawer.view)
                 drawerContentContainer.sendSubviewToBack(drawer.view)
-                
+                drawerContentContainerView.clipsToBounds = false
                 drawer.view.constrainToParent()
             }
         }
@@ -803,14 +807,16 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
                 drawerScrollView.frame = CGRect(x: adjustedLeftSafeArea, y: self.view.bounds.height - adjustedTopInset, width: self.view.bounds.width - adjustedLeftSafeArea - adjustedRightSafeArea, height: adjustedTopInset)
             }
             
-            drawerScrollView.addSubview(drawerShadowView)
+//            drawerScrollView.addSubview(drawerShadowView)
             
             if let drawerBackgroundVisualEffectView = drawerBackgroundVisualEffectView
             {
-                drawerScrollView.addSubview(drawerBackgroundVisualEffectView)
+//                drawerScrollView.addSubview(drawerBackgroundVisualEffectView)
                 drawerBackgroundVisualEffectView.layer.cornerRadius = drawerCornerRadius
+                drawerBackgroundVisualEffectView.clipsToBounds = false
             }
             
+            drawerContentContainer.clipsToBounds = false
             drawerScrollView.addSubview(drawerContentContainer)
             
             drawerContentContainer.frame = CGRect(x: 0, y: drawerScrollView.bounds.height - lowestStop, width: drawerScrollView.bounds.width, height: drawerScrollView.bounds.height + bounceOverflowMargin)
@@ -826,8 +832,8 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             cardMaskLayer.frame = drawerContentContainer.bounds
             cardMaskLayer.fillColor = UIColor.white.cgColor
             cardMaskLayer.backgroundColor = UIColor.clear.cgColor
-            drawerContentContainer.layer.mask = cardMaskLayer
-            drawerShadowView.layer.shadowPath = borderPath
+//            drawerContentContainer.layer.mask = cardMaskLayer
+//            drawerShadowView.layer.shadowPath = borderPath
             
             backgroundDimmingView.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.width, height: self.view.bounds.height + drawerScrollView.contentSize.height)
             
