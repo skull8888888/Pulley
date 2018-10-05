@@ -670,7 +670,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         backgroundDimmingView.isUserInteractionEnabled = false
         backgroundDimmingView.alpha = 0.0
         
-        drawerBackgroundVisualEffectView?.clipsToBounds = true
+        drawerBackgroundVisualEffectView?.clipsToBounds = false
         
         dimmingViewTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(PulleyViewController.dimmingViewTapRecognizerAction(gestureRecognizer:)))
         backgroundDimmingView.addGestureRecognizer(dimmingViewTapRecognizer!)
