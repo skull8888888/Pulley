@@ -292,7 +292,7 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
             if let drawerBackgroundVisualEffectView = drawerBackgroundVisualEffectView, self.isViewLoaded
             {
                 drawerScrollView.insertSubview(drawerBackgroundVisualEffectView, aboveSubview: drawerShadowView)
-                drawerBackgroundVisualEffectView.clipsToBounds = true
+                drawerBackgroundVisualEffectView.clipsToBounds = false
                 drawerBackgroundVisualEffectView.layer.cornerRadius = drawerCornerRadius
                 self.view.setNeedsLayout()
             }
