@@ -703,7 +703,6 @@ open class PulleyViewController: UIViewController, PulleyDrawerViewControllerDel
         super.viewDidLoad()
         
         // IB Support
-        print("Rock")
         if primaryContentViewController == nil || drawerContentViewController == nil
         {
             assert(primaryContentContainerView != nil && drawerContentContainerView != nil, "When instantiating from Interface Builder you must provide container views with an embedded view controller.")
